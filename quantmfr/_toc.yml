@@ -1,0 +1,18 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: Discrete Local Approximation
+    maxdepth: 0
+    chapters:
+    - file: discrete_local_approximation/quickguide
+    - file: discrete_local_approximation/uncertainexpansion
+    - file: discrete_local_approximation/shockelasticity
+    - file: discrete_local_approximation/Recursive
+  - caption: Continuous Global Solution
+    chapters: 
+    - file: continuous_global_solution/Twocap
+    - file: continuous_global_solution/shockelasticitycontinuous
+
