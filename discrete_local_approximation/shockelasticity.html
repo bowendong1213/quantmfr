@@ -1,61 +1,47 @@
 
+
 <!DOCTYPE html>
 
-<html lang="en">
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="lang:clipboard.copy" content="Copy to clipboard">
-  <meta name="lang:clipboard.copied" content="Copied to clipboard">
-  <meta name="lang:search.language" content="en">
-  <meta name="lang:search.pipeline.stopwords" content="True">
-  <meta name="lang:search.pipeline.trimmer" content="True">
-  <meta name="lang:search.result.none" content="No matching documents">
-  <meta name="lang:search.result.one" content="1 matching document">
-  <meta name="lang:search.result.other" content="# matching documents">
-  <meta name="lang:search.tokenizer" content="[\s\-]+">
-
-  
-    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
-
-    <style>
-      body,
-      input {
-        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
-      }
-
-      code,
-      kbd,
-      pre {
-        font-family: "Roboto Mono", "Courier New", Courier, monospace
-      }
-    </style>
-  
-
-  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
-  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
-  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
-  
-  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
-  
-  <meta name="theme-color" content="#3f51b5">
-  <script src="../_static/javascripts/modernizr.js"></script>
-  
-  
-  
     <title>Shock Elasticity Computation &#8212; Quant Macro Finance</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/material.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -78,190 +64,310 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'discrete_local_approximation/shockelasticity';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Sluggish Two Capital Model" href="../continuous_global_solution/Twocap.html" />
     <link rel="prev" title="Uncertain Expansion Methods" href="uncertainexpansion.html" />
-  
-   
-
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body dir=ltr
-        data-md-color-primary=blue-grey data-md-color-accent=blue>
   
-  <svg class="md-svg">
-    <defs data-children-count="0">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
-      
-    </defs>
-  </svg>
   
-  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
-  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
-  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-  <a href="#discrete_local_approximation/shockelasticity" tabindex="1" class="md-skip"> Skip to content </a>
-  <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex navheader">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../intro.html" title="Quant Macro Finance"
-           class="md-header-nav__button md-logo">
-          
-              <img src="../_static/mfr.png" height="26"
-                   alt="Quant Macro Finance logo">
-          
-        </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          <span class="md-header-nav__topic">Quant Macro Finance</span>
-          <span class="md-header-nav__topic"> Shock Elasticity Computation </span>
-        </div>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-        
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" action="../search.html" method="get" name="search">
-      <input type="text" class="md-search__input" name="q" placeholder="Search"
-             autocapitalize="off" autocomplete="off" spellcheck="false"
-             data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
-          <div class="md-search-result__meta">
-            Type to start searching
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
   </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/mfr.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/mfr.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Discrete Local Approximation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quickguide.html">Quick Guide to Expansion</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="uncertainexpansion.html">Uncertain Expansion Methods</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Shock Elasticity Computation</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Continuous Global Solution</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../continuous_global_solution/Twocap.html">Sluggish Two Capital Model</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../continuous_global_solution/shockelasticitycontinuous.html">Shock Elasticity Continuous</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/discrete_local_approximation/shockelasticity.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-      </div>
-      
-      
-  
-  <script src="../_static/javascripts/version_dropdown.js"></script>
-  <script>
-    var json_loc = "../"versions.json"",
-        target_loc = "../../",
-        text = "Versions";
-    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
-  </script>
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
   
 
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
-  </nav>
-</header>
-
   
-  <div class="md-container">
-    
-    
-    
-  <nav class="md-tabs" data-md-component="tabs">
-    <div class="md-tabs__inner md-grid">
-      <ul class="md-tabs__list">
-          <li class="md-tabs__item"><a href="../intro.html" class="md-tabs__link">Quant Macro Finance</a></li>
-      </ul>
-    </div>
-  </nav>
-    <main class="md-main">
-      <div class="md-main__inner md-grid" data-md-component="container">
-        
-          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
-            <div class="md-sidebar__scrollwrap">
-              <div class="md-sidebar__inner">
-                <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../intro.html" title="Quant Macro Finance" class="md-nav__button md-logo">
-      
-        <img src="../_static/mfr.png" alt=" logo" width="48" height="48">
-      
-    </a>
-    <a href="../intro.html"
-       title="Quant Macro Finance">Quant Macro Finance</a>
-  </label>
-  
+</div>
+</div>
+              
+              
 
-</nav>
-              </div>
-            </div>
-          </div>
-          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-            <div class="md-sidebar__scrollwrap">
-              <div class="md-sidebar__inner">
-                
-<nav class="md-nav md-nav--secondary">
-    <label class="md-nav__title" for="__toc">Contents</label>
-  <ul class="md-nav__list" data-md-scrollfix="">
-        <li class="md-nav__item"><a href="#discrete-local-approximation-shockelasticity--page-root" class="md-nav__link">Shock Elasticity Computation</a>
-        </li>
-        <li class="md-nav__item"><a href="#exponential-linear-quadratic-framework" class="md-nav__link">1. Exponential-linear-quadratic Framework</a>
-        </li>
-        <li class="md-nav__item"><a href="#shock-elasticity" class="md-nav__link">2. Shock Elasticity</a><nav class="md-nav">
-              <ul class="md-nav__list">
-        <li class="md-nav__item"><a href="#analytical-framework" class="md-nav__link">2.1 Analytical framework</a>
-        </li>
-        <li class="md-nav__item"><a href="#limiting-behavior" class="md-nav__link">2.2 Limiting Behavior</a>
-        </li>
-        <li class="md-nav__item"><a href="#exposure-and-price-elasticities" class="md-nav__link">2.3 Exposure and Price Elasticities</a>
-        </li></ul>
-            </nav>
-        </li>
-        <li class="md-nav__item"><a href="#an-illustration-using-the-long-run-risk-model-sup-1-sup" class="md-nav__link">3. An Illustration using the Long-Run Risk Model <sup>[1]</sup></a><nav class="md-nav">
-              <ul class="md-nav__list">
-        <li class="md-nav__item"><a href="#exposure-elasticity-for-consumption-growth" class="md-nav__link">3.1 Exposure Elasticity for Consumption Growth</a>
-        </li>
-        <li class="md-nav__item"><a href="#calculate-price-elasticity-for-consumption-growth" class="md-nav__link">3.2 Calculate Price Elasticity for Consumption Growth</a>
-        </li>
-        <li class="md-nav__item"><a href="#shock-elasticities-under-different-parameter-settings" class="md-nav__link">3.3 Shock Elasticities under Different Parameter Settings</a>
-        </li></ul>
-            </nav>
-        </li>
-        <li class="md-nav__item"><a href="#reference" class="md-nav__link">Reference</a>
-        </li>
-    
-<li class="md-nav__item"><a class="md-nav__extra_link" href="../_sources/discrete_local_approximation/shockelasticity.ipynb">Show Source</a> </li>
-
-<li id="searchbox" class="md-nav__item"></li>
-
-  </ul>
-</nav>
-              </div>
-            </div>
-          </div>
-        
-        <div class="md-content">
-          <article class="md-content__inner md-typeset" role="main">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Shock Elasticity Computation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-  <p><a href="https://colab.research.google.com/github/lphansen/RiskUncertaintyValue/blob/main/shockelasticity.ipynb" target="_parent"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg"/></a></p>
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Shock Elasticity Computation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exponential-linear-quadratic-framework">1. Exponential-linear-quadratic Framework</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#shock-elasticity">2. Shock Elasticity</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-framework">2.1 Analytical framework</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limiting-behavior">2.2 Limiting Behavior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-and-price-elasticities">2.3 Exposure and Price Elasticities</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#an-illustration-using-the-long-run-risk-model-sup-1-sup">3. An Illustration using the Long-Run Risk Model <sup>[1]</sup></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-elasticity-for-consumption-growth">3.1 Exposure Elasticity for Consumption Growth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-price-elasticity-for-consumption-growth">3.2 Calculate Price Elasticity for Consumption Growth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shock-elasticities-under-different-parameter-settings">3.3 Shock Elasticities under Different Parameter Settings</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p><a href="https://colab.research.google.com/github/lphansen/RiskUncertaintyValue/blob/main/shockelasticity.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="shock-elasticity-computation">
-<h1 id="discrete-local-approximation-shockelasticity--page-root">Shock Elasticity Computation<a class="headerlink" href="#discrete-local-approximation-shockelasticity--page-root" title="Permalink to this heading">¶</a></h1>
+<h1>Shock Elasticity Computation<a class="headerlink" href="#shock-elasticity-computation" title="Permalink to this heading">#</a></h1>
 <p>Shock elasticities quantify the (local) exposures of macroeconomic cash flows to shocks over alternative investment horizons and the corresponding prices or investors’ compensations. This Jupyter notebook provides the computations for the shock elasticities for models that are exponential-quadratic.   This model structure is particularly tractable with quasi-analytical solutions. This notebook implements methods and formulas developed in [2] and [3].</p>
 <ul class="simple">
 <li><p>Section 1 introduces the exponential–quadratic framework. It supposes this structure emerges as an approximation with the approximation taken as input into the computer code.</p></li>
 <li><p>Section 2 presents shock elasticity formulas for both exposure and price elasticities.</p></li>
 <li><p>Section 3 provides an illustration using the long-run risk model [1].
-<br/></p></li>
+<br></p></li>
 </ul>
-<p><br/><br/></p>
+<p><br><br></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="exponential-linear-quadratic-framework">
-<h1 id="exponential-linear-quadratic-framework">1. Exponential-linear-quadratic Framework<a class="headerlink" href="#exponential-linear-quadratic-framework" title="Permalink to this heading">¶</a></h1>
+<h1>1. Exponential-linear-quadratic Framework<a class="headerlink" href="#exponential-linear-quadratic-framework" title="Permalink to this heading">#</a></h1>
 <p>We suppose a linear-quadratic specification of the state dynamics:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -338,10 +444,10 @@ Y_{t+1}(\mathrm q)-Y_t({\mathrm q}) \approx Y_{t+1}^0-Y_{t}^0+ {\mathrm q} (Y_{t
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">workdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
 <span class="o">!</span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/lphansen/RiskUncertaintyValue<span class="w"> </span>#<span class="w"> </span>Please<span class="w"> </span>uncomment<span class="w"> </span>this<span class="w"> </span>line<span class="w"> </span>when<span class="w"> </span>running<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span>google<span class="w"> </span>colab
-<span class="n">workdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">'/RiskUncertaintyValue'</span>             <span class="c1"># Please uncomment this line when running on the google colab</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">workdir</span><span class="o">+</span><span class="s1">'/src'</span><span class="p">)</span>
+<span class="n">workdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/RiskUncertaintyValue&#39;</span>             <span class="c1"># Please uncomment this line when running on the google colab</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">workdir</span><span class="o">+</span><span class="s1">&#39;/src&#39;</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
-<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s2">"&lt;style&gt;.container { width:97% !important; }&lt;/style&gt;"</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&lt;style&gt;.container { width:97% !important; }&lt;/style&gt;&quot;</span><span class="p">))</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
@@ -352,19 +458,19 @@ Y_{t+1}(\mathrm q)-Y_t({\mathrm q}) \approx Y_{t+1}^0-Y_{t}^0+ {\mathrm q} (Y_{t
 <span class="kn">from</span> <span class="nn">utilities</span> <span class="kn">import</span> <span class="n">mat</span><span class="p">,</span> <span class="n">vec</span><span class="p">,</span> <span class="n">sym</span>
 <span class="kn">from</span> <span class="nn">elasticity</span> <span class="kn">import</span> <span class="n">exposure_elasticity</span><span class="p">,</span> <span class="n">price_elasticity</span>
 
-<span class="sd">"""</span>
-<span class="sd">Python object 'LinQuadVar' stores the coefficients of a variable that has the linear-quadratic structure as shown in equations (1) and (2).</span>
-<span class="sd">Below is an example of constructing a variable using the 'LinQuadVar'.</span>
-<span class="sd">"""</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Python object &#39;LinQuadVar&#39; stores the coefficients of a variable that has the linear-quadratic structure as shown in equations (1) and (2).</span>
+<span class="sd">Below is an example of constructing a variable using the &#39;LinQuadVar&#39;.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="n">n_Y</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># The dimension of the LinQuadVar, here we construct a one dimensional (scalar) LinQuadVar</span>
 <span class="n">n_X</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># The dimension of state variables, X_t</span>
 <span class="n">n_W</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1"># The dimension of shocks, W_t</span>
-<span class="n">lq</span> <span class="o">=</span> <span class="n">LinQuadVar</span><span class="p">({</span><span class="s1">'c'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0015</span><span class="p">]]),</span>                                         <span class="c1"># The constant term</span>
-                <span class="s1">'x'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]]),</span>                                          <span class="c1"># The coefficients on X_{1,t}</span>
-                <span class="s1">'w'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.0078</span><span class="p">,</span> <span class="mf">0.</span>  <span class="p">]]),</span>                            <span class="c1"># The coefficients on W_{t+1}</span>
-                <span class="s1">'x2'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]]),</span>                                        <span class="c1"># The coefficients on X_{2,t}</span>
-                <span class="s1">'xw'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.0039</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]])},</span>       <span class="c1"># The coefficients on X_{1, t} \otimes W_{t+1}</span>
+<span class="n">lq</span> <span class="o">=</span> <span class="n">LinQuadVar</span><span class="p">({</span><span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0015</span><span class="p">]]),</span>                                         <span class="c1"># The constant term</span>
+                <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]]),</span>                                          <span class="c1"># The coefficients on X_{1,t}</span>
+                <span class="s1">&#39;w&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.0078</span><span class="p">,</span> <span class="mf">0.</span>  <span class="p">]]),</span>                            <span class="c1"># The coefficients on W_{t+1}</span>
+                <span class="s1">&#39;x2&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]]),</span>                                        <span class="c1"># The coefficients on X_{2,t}</span>
+                <span class="s1">&#39;xw&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.0039</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]])},</span>       <span class="c1"># The coefficients on X_{1, t} \otimes W_{t+1}</span>
                 <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_Y</span><span class="p">,</span> <span class="n">n_X</span><span class="p">,</span> <span class="n">n_W</span><span class="p">))</span>                                            <span class="c1"># The dimensions of LinQuadVar, X_t, and, W_t</span>
 
 <span class="c1">## Display the coefficients of the LinQuadVar</span>
@@ -373,22 +479,22 @@ Y_{t+1}(\mathrm q)-Y_t({\mathrm q}) \approx Y_{t+1}^0-Y_{t}^0+ {\mathrm q} (Y_{t
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>.container { width:97% !important; }</style></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'c': array([[0.0015]]),
- 'x': array([[1., 0.]]),
- 'w': array([[0.    , 0.    , 0.0078, 0.    ]]),
- 'x2': array([[0.5, 0. ]]),
- 'xw': array([[0.    , 0.    , 0.    , 0.    , 0.    , 0.    , 0.0039, 0.    ]])}
+<div class="output text_html"><style>.container { width:97% !important; }</style></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;c&#39;: array([[0.0015]]),
+ &#39;x&#39;: array([[1., 0.]]),
+ &#39;w&#39;: array([[0.    , 0.    , 0.0078, 0.    ]]),
+ &#39;x2&#39;: array([[0.5, 0. ]]),
+ &#39;xw&#39;: array([[0.    , 0.    , 0.    , 0.    , 0.    , 0.    , 0.0039, 0.    ]])}
 </pre></div>
 </div>
 </div>
 </details>
 </div>
-<p><br/><br/></p>
+<p><br><br></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="shock-elasticity">
-<h1 id="shock-elasticity">2. Shock Elasticity<a class="headerlink" href="#shock-elasticity" title="Permalink to this heading">¶</a></h1>
+<h1>2. Shock Elasticity<a class="headerlink" href="#shock-elasticity" title="Permalink to this heading">#</a></h1>
 <section id="analytical-framework">
-<h2 id="analytical-framework">2.1 Analytical framework<a class="headerlink" href="#analytical-framework" title="Permalink to this heading">¶</a></h2>
+<h2>2.1 Analytical framework<a class="headerlink" href="#analytical-framework" title="Permalink to this heading">#</a></h2>
 <p>Shock elasticities are used to quantify the date <span class="math notranslate nohighlight">\(t\)</span> impact on values of exposure to the shock <span class="math notranslate nohighlight">\(
 (\alpha_0 + \alpha_1 X_0) \cdot W_1\)</span> at date one. It has the form shown in equation 3:</p>
 <div class="math notranslate nohighlight">
@@ -440,7 +546,7 @@ variable by <span class="math notranslate nohighlight">\(W_1\)</span> and taking
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_Φ_star</span><span class="p">(</span><span class="n">log_M_growth</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">,</span> <span class="n">X2_tp1</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes :math:`\Phi^*_{0,t-1}`, :math:`\Phi^*_{1,t-1}`, :math:`\Phi^*_{2,t-1}`, :math:`\Phi^*_{3,t-1}` in equation (4).</span>
 
 <span class="sd">    Parameters</span>
@@ -461,7 +567,7 @@ variable by <span class="math notranslate nohighlight">\(W_1\)</span> and taking
 <span class="sd">    Φ_star_2tm1_all : (T, 1, n_X) ndarray</span>
 <span class="sd">    Φ_star_3tm1_all : (T, 1, n_X**2) ndarray</span>
 
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_</span><span class="p">,</span> <span class="n">n_X</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">X1_tp1</span><span class="o">.</span><span class="n">shape</span>
     
     <span class="n">Φ_star_1tm1_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">T</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_X</span><span class="p">))</span>
@@ -471,9 +577,9 @@ variable by <span class="math notranslate nohighlight">\(W_1\)</span> and taking
     <span class="n">X1X1</span> <span class="o">=</span> <span class="n">kron_prod</span><span class="p">(</span><span class="n">X1_tp1</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
-        <span class="n">Φ_star_1tm1_all</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">log_M_growth_distort</span><span class="p">[</span><span class="s1">'x'</span><span class="p">]</span>
-        <span class="n">Φ_star_2tm1_all</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">log_M_growth_distort</span><span class="p">[</span><span class="s1">'x2'</span><span class="p">]</span>
-        <span class="n">Φ_star_3tm1_all</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">log_M_growth_distort</span><span class="p">[</span><span class="s1">'xx'</span><span class="p">]</span>
+        <span class="n">Φ_star_1tm1_all</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">log_M_growth_distort</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
+        <span class="n">Φ_star_2tm1_all</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">log_M_growth_distort</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span>
+        <span class="n">Φ_star_3tm1_all</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">log_M_growth_distort</span><span class="p">[</span><span class="s1">&#39;xx&#39;</span><span class="p">]</span>
         <span class="n">temp</span> <span class="o">=</span> <span class="n">next_period</span><span class="p">(</span><span class="n">log_M_growth_distort</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">,</span> <span class="n">X2_tp1</span><span class="p">,</span> <span class="n">X1X1</span><span class="p">)</span>
         <span class="n">log_M_growth_distort</span> <span class="o">=</span> <span class="n">log_E_exp</span><span class="p">(</span><span class="n">log_M_growth</span> <span class="o">+</span> <span class="n">temp</span><span class="p">)</span>
 
@@ -482,10 +588,10 @@ variable by <span class="math notranslate nohighlight">\(W_1\)</span> and taking
 </div>
 </div>
 </div>
-<br/>
+<br>
 </section>
 <section id="limiting-behavior">
-<h2 id="limiting-behavior">2.2 Limiting Behavior<a class="headerlink" href="#limiting-behavior" title="Permalink to this heading">¶</a></h2>
+<h2>2.2 Limiting Behavior<a class="headerlink" href="#limiting-behavior" title="Permalink to this heading">#</a></h2>
 <p>The operator <span class="math notranslate nohighlight">\({\mathbb M}\)</span> typically has a solution to the following equation:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -515,7 +621,7 @@ L_{1,\infty} = \left(\frac {M_1}{M_0} \right)\left(\frac{\exp\left[\Phi_1^e X_{1
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">M_mapping</span><span class="p">(</span><span class="n">log_M_growth</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">,</span> <span class="n">X2_tp1</span><span class="p">,</span> <span class="n">second_order</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">'''</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Computes coefficients of a LinQuadVar after one iteration of M mapping</span>
 
 <span class="sd">    Parameters</span>
@@ -525,7 +631,7 @@ L_{1,\infty} = \left(\frac {M_1}{M_0} \right)\left(\frac{\exp\left[\Phi_1^e X_{1
 <span class="sd">        e.g. log consumption growth, :math:`\log \frac{C_{t+1}}{C_t}`</span>
 <span class="sd">    f : LinQuadVar</span>
 <span class="sd">        The function M Mapping operate on. </span>
-<span class="sd">        e.g. A function that is identically one, log_f = LinQuadVar({'c': np.zeros((1,1))}, log_M_growth.shape)</span>
+<span class="sd">        e.g. A function that is identically one, log_f = LinQuadVar({&#39;c&#39;: np.zeros((1,1))}, log_M_growth.shape)</span>
 <span class="sd">    X1_tp1 : LinQuadVar </span>
 <span class="sd">        Stores the coefficients of laws of motion for X1.</span>
 <span class="sd">    X2_tp2 : LinQuadVar or None</span>
@@ -536,16 +642,16 @@ L_{1,\infty} = \left(\frac {M_1}{M_0} \right)\left(\frac{\exp\left[\Phi_1^e X_{1
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    LinQuadVar, stores the coefficients of the new LinQuadVar after one iteration of M Mapping</span>
-<span class="sd">    '''</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">if</span> <span class="n">second_order</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">log_E_exp</span><span class="p">(</span><span class="n">log_M_growth</span> <span class="o">+</span> <span class="n">next_period</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">,</span> <span class="n">X2_tp1</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">X2_tp1</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">'The second order expansion for law of motion is not used in the first order expansion.'</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The second order expansion for law of motion is not used in the first order expansion.&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">log_E_exp</span><span class="p">(</span><span class="n">log_M_growth</span> <span class="o">+</span> <span class="n">next_period</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">))</span>
     
 <span class="k">def</span> <span class="nf">Q_mapping</span><span class="p">(</span><span class="n">log_M_growth</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">,</span> <span class="n">X2_tp1</span><span class="p">,</span> <span class="n">tol</span> <span class="o">=</span> <span class="mf">1e-10</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">second_order</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">'''</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Computes limiting coefficients of a LinQuadVar by recursively applying the M mapping operator till convergence, returns the eigenvalue and eigenvector.</span>
 
 <span class="sd">    Parameters</span>
@@ -555,7 +661,7 @@ L_{1,\infty} = \left(\frac {M_1}{M_0} \right)\left(\frac{\exp\left[\Phi_1^e X_{1
 <span class="sd">        e.g. log consumption growth, :math:`\log \frac{C_{t+1}}{C_t}`</span>
 <span class="sd">    f : LinQuadVar</span>
 <span class="sd">        The function M Mapping operate on. </span>
-<span class="sd">        e.g. A function that is identically one, log_f = LinQuadVar({'c': np.zeros((1,1))}, log_M_growth.shape)</span>
+<span class="sd">        e.g. A function that is identically one, log_f = LinQuadVar({&#39;c&#39;: np.zeros((1,1))}, log_M_growth.shape)</span>
 <span class="sd">    X1_tp1 : LinQuadVar </span>
 <span class="sd">        Stores the coefficients of laws of motion for X1.</span>
 <span class="sd">    X2_tp2 : LinQuadVar or None</span>
@@ -573,12 +679,12 @@ L_{1,\infty} = \left(\frac {M_1}{M_0} \right)\left(\frac{\exp\left[\Phi_1^e X_{1
 <span class="sd">        stores the coefficients of the LinQuadVar in each iteration of M Mapping</span>
 <span class="sd">    f: LinQuadVar</span>
 <span class="sd">        The function M Mapping operate on. </span>
-<span class="sd">        e.g. A function that is identically one, log_f = LinQuadVar({'c': np.zeros((1,1))}, log_M_growth.shape)</span>
+<span class="sd">        e.g. A function that is identically one, log_f = LinQuadVar({&#39;c&#39;: np.zeros((1,1))}, log_M_growth.shape)</span>
 <span class="sd">    η: float</span>
 <span class="sd">        The eigenvalue</span>
 <span class="sd">    η_series: list of float</span>
 <span class="sd">        The convergence path of the eigenvalue </span>
-<span class="sd">    '''</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">η_series</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">Qf_components_log</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
@@ -587,17 +693,17 @@ L_{1,\infty} = \left(\frac {M_1}{M_0} \right)\left(\frac{\exp\left[\Phi_1^e X_{1
             <span class="n">f_next</span> <span class="o">=</span> <span class="n">M_mapping</span><span class="p">(</span><span class="n">log_M_growth</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">,</span> <span class="n">X2_tp1</span><span class="p">,</span> <span class="n">second_order</span> <span class="o">=</span> <span class="n">second_order</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">X2_tp1</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s1">'The second order expansion for law of motion is not used in the first order expansion.'</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The second order expansion for law of motion is not used in the first order expansion.&#39;</span><span class="p">)</span>
             <span class="n">f_next</span> <span class="o">=</span> <span class="n">M_mapping</span><span class="p">(</span><span class="n">log_M_growth</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">,</span> <span class="n">second_order</span> <span class="o">=</span> <span class="n">second_order</span><span class="p">)</span>
-        <span class="n">η</span> <span class="o">=</span> <span class="p">(</span><span class="n">f_next</span><span class="p">[</span><span class="s1">'c'</span><span class="p">]</span> <span class="o">-</span> <span class="n">f</span><span class="p">[</span><span class="s1">'c'</span><span class="p">])</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="n">η</span> <span class="o">=</span> <span class="p">(</span><span class="n">f_next</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
         <span class="n">η_series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">η</span><span class="p">)</span>
         
-        <span class="k">if</span> <span class="n">distance</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_next</span><span class="p">,</span> <span class="p">[</span><span class="s1">'x'</span><span class="p">,</span> <span class="s1">'xx'</span><span class="p">,</span> <span class="s1">'x2'</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">distance</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_next</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;xx&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
             <span class="k">break</span>
         <span class="n">f</span> <span class="o">=</span> <span class="n">f_next</span>
     
     <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">max_iter</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Warning: Q iteration may not have converged."</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning: Q iteration may not have converged.&quot;</span><span class="p">)</span>
     <span class="n">Qf_components_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f_next</span><span class="p">)</span>
         
     <span class="k">return</span> <span class="n">Qf_components_log</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">η</span><span class="p">,</span> <span class="n">η_series</span>
@@ -609,7 +715,7 @@ L_{1,\infty} = \left(\frac {M_1}{M_0} \right)\left(\frac{\exp\left[\Phi_1^e X_{1
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_elasticity_coeff</span><span class="p">(</span><span class="n">log_M_growth</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">,</span> <span class="n">X2_tp1</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes :math:`\mu_{t,0}`, :math:`\mu_{t,1}`, :math:`\tilde{\Sigma}_t`. Corresponding formulas can be found in [3], Jaroslav and Hansen (2014), Appendix B.</span>
 
 <span class="sd">    Parameters</span>
@@ -630,24 +736,24 @@ L_{1,\infty} = \left(\frac {M_1}{M_0} \right)\left(\frac{\exp\left[\Phi_1^e X_{1
 <span class="sd">    μ_t0_all : (T, n_W, 1) ndarray</span>
 <span class="sd">    μ_t1_all : (T, n_W, n_X) ndarray</span>
 
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_</span><span class="p">,</span> <span class="n">n_X</span><span class="p">,</span> <span class="n">n_W</span> <span class="o">=</span> <span class="n">log_M_growth</span><span class="o">.</span><span class="n">shape</span>
     
     <span class="n">Φ_star_1tm1_all</span><span class="p">,</span> <span class="n">Φ_star_2tm1_all</span><span class="p">,</span> <span class="n">Φ_star_3tm1_all</span> <span class="o">=</span> <span class="n">_Φ_star</span><span class="p">(</span><span class="n">log_M_growth</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">,</span> <span class="n">X2_tp1</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
-    <span class="n">Ψ_0</span> <span class="o">=</span> <span class="n">log_M_growth</span><span class="p">[</span><span class="s1">'w'</span><span class="p">]</span>
-    <span class="n">Ψ_1</span> <span class="o">=</span> <span class="n">log_M_growth</span><span class="p">[</span><span class="s1">'xw'</span><span class="p">]</span>
-    <span class="n">Ψ_2</span> <span class="o">=</span> <span class="n">log_M_growth</span><span class="p">[</span><span class="s1">'ww'</span><span class="p">]</span>
-    <span class="n">Λ_10</span> <span class="o">=</span> <span class="n">X1_tp1</span><span class="p">[</span><span class="s1">'w'</span><span class="p">]</span>
+    <span class="n">Ψ_0</span> <span class="o">=</span> <span class="n">log_M_growth</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">]</span>
+    <span class="n">Ψ_1</span> <span class="o">=</span> <span class="n">log_M_growth</span><span class="p">[</span><span class="s1">&#39;xw&#39;</span><span class="p">]</span>
+    <span class="n">Ψ_2</span> <span class="o">=</span> <span class="n">log_M_growth</span><span class="p">[</span><span class="s1">&#39;ww&#39;</span><span class="p">]</span>
+    <span class="n">Λ_10</span> <span class="o">=</span> <span class="n">X1_tp1</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">log_M_growth</span><span class="o">.</span><span class="n">second_order</span><span class="p">:</span>
-        <span class="n">Λ_20</span> <span class="o">=</span> <span class="n">X2_tp1</span><span class="p">[</span><span class="s1">'w'</span><span class="p">]</span>
-        <span class="n">Λ_21</span> <span class="o">=</span> <span class="n">X2_tp1</span><span class="p">[</span><span class="s1">'xw'</span><span class="p">]</span>
-        <span class="n">Λ_22</span> <span class="o">=</span> <span class="n">X2_tp1</span><span class="p">[</span><span class="s1">'ww'</span><span class="p">]</span>
+        <span class="n">Λ_20</span> <span class="o">=</span> <span class="n">X2_tp1</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">]</span>
+        <span class="n">Λ_21</span> <span class="o">=</span> <span class="n">X2_tp1</span><span class="p">[</span><span class="s1">&#39;xw&#39;</span><span class="p">]</span>
+        <span class="n">Λ_22</span> <span class="o">=</span> <span class="n">X2_tp1</span><span class="p">[</span><span class="s1">&#39;ww&#39;</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">Λ_20</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_X</span><span class="p">,</span><span class="n">n_W</span><span class="p">))</span>
         <span class="n">Λ_21</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_X</span><span class="p">,</span><span class="n">n_X</span><span class="o">*</span><span class="n">n_W</span><span class="p">))</span>
         <span class="n">Λ_22</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_X</span><span class="p">,</span><span class="n">n_W</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-    <span class="n">Θ_10</span> <span class="o">=</span> <span class="n">X1_tp1</span><span class="p">[</span><span class="s1">'c'</span><span class="p">]</span>
-    <span class="n">Θ_11</span> <span class="o">=</span> <span class="n">X1_tp1</span><span class="p">[</span><span class="s1">'x'</span><span class="p">]</span>
+    <span class="n">Θ_10</span> <span class="o">=</span> <span class="n">X1_tp1</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]</span>
+    <span class="n">Θ_11</span> <span class="o">=</span> <span class="n">X1_tp1</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
     
     <span class="n">Σ_tilde_t_all</span><span class="p">,</span> <span class="n">μ_t0_all</span><span class="p">,</span> <span class="n">μ_t1_all</span> \
         <span class="o">=</span> <span class="n">_elasticity_coeff_inner_loop</span><span class="p">(</span><span class="n">Φ_star_1tm1_all</span><span class="p">,</span> <span class="n">Φ_star_2tm1_all</span><span class="p">,</span> <span class="n">Φ_star_3tm1_all</span><span class="p">,</span> <span class="n">Ψ_0</span><span class="p">,</span> <span class="n">Ψ_1</span><span class="p">,</span> <span class="n">Ψ_2</span><span class="p">,</span> <span class="n">Λ_10</span><span class="p">,</span> <span class="n">Λ_20</span><span class="p">,</span> <span class="n">Λ_21</span><span class="p">,</span> <span class="n">Λ_22</span><span class="p">,</span> <span class="n">Θ_10</span><span class="p">,</span> <span class="n">Θ_11</span><span class="p">,</span> <span class="n">n_X</span><span class="p">,</span> <span class="n">n_W</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>   
@@ -689,7 +795,7 @@ L_{1,\infty} = \left(\frac {M_1}{M_0} \right)\left(\frac{\exp\left[\Phi_1^e X_{1
 </div>
 </section>
 <section id="exposure-and-price-elasticities">
-<h2 id="exposure-and-price-elasticities">2.3 Exposure and Price Elasticities<a class="headerlink" href="#exposure-and-price-elasticities" title="Permalink to this heading">¶</a></h2>
+<h2>2.3 Exposure and Price Elasticities<a class="headerlink" href="#exposure-and-price-elasticities" title="Permalink to this heading">#</a></h2>
 <p>We consider two types of multiplicative processes,  one that captures macroeconomic growth, denoted by <span class="math notranslate nohighlight">\(G\)</span>, and another that captures stochastic discounting, denoted by <span class="math notranslate nohighlight">\(S\)</span>.</p>
 <ul class="simple">
 <li><p>The stochastic discount factor process,  <span class="math notranslate nohighlight">\(S\)</span>, is typically computed from the underlying economic model to reflect equilibrium valuation dynamics.</p></li>
@@ -724,7 +830,7 @@ L_{1,\infty} = \left(\frac {M_1}{M_0} \right)\left(\frac{\exp\left[\Phi_1^e X_{1
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">exposure_elasticity</span><span class="p">(</span><span class="n">log_M_growth</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">,</span> <span class="n">X2_tp1</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">shock</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes exposure elasticity for M.</span>
 
 <span class="sd">    Parameters</span>
@@ -752,10 +858,10 @@ L_{1,\infty} = \left(\frac {M_1}{M_0} \right)\left(\frac{\exp\left[\Phi_1^e X_{1
 <span class="sd">    ---------</span>
 <span class="sd">    Borovicka, Hansen (2014). See http://larspeterhansen.org/.</span>
 
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">n_Y</span><span class="p">,</span> <span class="n">n_X</span><span class="p">,</span> <span class="n">n_W</span> <span class="o">=</span> <span class="n">log_M_growth</span><span class="o">.</span><span class="n">shape</span>
     <span class="k">if</span> <span class="n">n_Y</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"The dimension of input should be 1."</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The dimension of input should be 1.&quot;</span><span class="p">)</span>
 
     <span class="n">α</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_W</span><span class="p">)</span>
     <span class="n">α</span><span class="p">[</span><span class="n">shock</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>    
@@ -763,10 +869,10 @@ L_{1,\infty} = \left(\frac {M_1}{M_0} \right)\left(\frac{\exp\left[\Phi_1^e X_{1
 
     <span class="n">Σ_tilde_t</span><span class="p">,</span> <span class="n">μ_t0</span><span class="p">,</span> <span class="n">μ_t1</span> <span class="o">=</span> <span class="n">_elasticity_coeff</span><span class="p">(</span><span class="n">log_M_growth</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">,</span> <span class="n">X2_tp1</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
 
-    <span class="n">kron_product</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">X1_tp1</span><span class="p">[</span><span class="s1">'x'</span><span class="p">],</span> <span class="n">X1_tp1</span><span class="p">[</span><span class="s1">'x'</span><span class="p">])</span>
-    <span class="n">x_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_X</span><span class="p">)</span><span class="o">-</span><span class="n">X1_tp1</span><span class="p">[</span><span class="s1">'x'</span><span class="p">],</span><span class="n">X1_tp1</span><span class="p">[</span><span class="s1">'c'</span><span class="p">])</span>
+    <span class="n">kron_product</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">X1_tp1</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">X1_tp1</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
+    <span class="n">x_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_X</span><span class="p">)</span><span class="o">-</span><span class="n">X1_tp1</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span><span class="n">X1_tp1</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">])</span>
     <span class="n">x_cov</span> <span class="o">=</span> <span class="n">mat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_X</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">kron_product</span><span class="p">,</span>
-                                <span class="n">vec</span><span class="p">(</span><span class="n">X1_tp1</span><span class="p">[</span><span class="s1">'w'</span><span class="p">]</span><span class="nd">@X1_tp1</span><span class="p">[</span><span class="s1">'w'</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">)),</span> <span class="p">(</span><span class="n">n_X</span><span class="p">,</span> <span class="n">n_X</span><span class="p">))</span>
+                                <span class="n">vec</span><span class="p">(</span><span class="n">X1_tp1</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">]</span><span class="nd">@X1_tp1</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">)),</span> <span class="p">(</span><span class="n">n_X</span><span class="p">,</span> <span class="n">n_X</span><span class="p">))</span>
 
     <span class="n">elasticities</span> <span class="o">=</span> <span class="n">_exposure_elasticity_loop</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">n_Y</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">Σ_tilde_t</span><span class="p">,</span> <span class="n">μ_t0</span><span class="p">,</span>
                                              <span class="n">μ_t1</span><span class="p">,</span> <span class="n">percentile</span><span class="p">,</span> <span class="n">x_mean</span><span class="p">,</span> <span class="n">x_cov</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
@@ -794,7 +900,7 @@ L_{1,\infty} = \left(\frac {M_1}{M_0} \right)\left(\frac{\exp\left[\Phi_1^e X_{1
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">price_elasticity</span><span class="p">(</span><span class="n">log_G_growth</span><span class="p">,</span> <span class="n">log_S_growth</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">,</span> <span class="n">X2_tp1</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">shock</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">percentile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes price elasticity.</span>
 
 <span class="sd">    Parameters</span>
@@ -825,13 +931,13 @@ L_{1,\infty} = \left(\frac {M_1}{M_0} \right)\left(\frac{\exp\left[\Phi_1^e X_{1
 <span class="sd">    ---------</span>
 <span class="sd">    Borovicka, Hansen (2014). See http://larspeterhansen.org/.</span>
 
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">log_G_growth</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">log_S_growth</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"The dimensions of G and S do not match."</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The dimensions of G and S do not match.&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">n_Y</span><span class="p">,</span> <span class="n">n_X</span><span class="p">,</span> <span class="n">n_W</span> <span class="o">=</span> <span class="n">log_G_growth</span><span class="o">.</span><span class="n">shape</span>
         <span class="k">if</span> <span class="n">n_Y</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"The dimension of inputs should be (1, n_X, n_W)"</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The dimension of inputs should be (1, n_X, n_W)&quot;</span><span class="p">)</span>
     <span class="n">α</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_W</span><span class="p">)</span>
     <span class="n">α</span><span class="p">[</span><span class="n">shock</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>          
 
@@ -842,10 +948,10 @@ L_{1,\infty} = \left(\frac {M_1}{M_0} \right)\left(\frac{\exp\left[\Phi_1^e X_{1
     <span class="n">Σ_tilde_value_t</span><span class="p">,</span> <span class="n">μ_value_t0</span><span class="p">,</span> <span class="n">μ_value_t1</span>\
         <span class="o">=</span> <span class="n">_elasticity_coeff</span><span class="p">(</span><span class="n">log_G_growth</span><span class="o">+</span><span class="n">log_S_growth</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">,</span> <span class="n">X2_tp1</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
 
-    <span class="n">kron_product</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">X1_tp1</span><span class="p">[</span><span class="s1">'x'</span><span class="p">],</span> <span class="n">X1_tp1</span><span class="p">[</span><span class="s1">'x'</span><span class="p">])</span>
-    <span class="n">x_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_X</span><span class="p">)</span><span class="o">-</span><span class="n">X1_tp1</span><span class="p">[</span><span class="s1">'x'</span><span class="p">],</span><span class="n">X1_tp1</span><span class="p">[</span><span class="s1">'c'</span><span class="p">])</span>
+    <span class="n">kron_product</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">X1_tp1</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">X1_tp1</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
+    <span class="n">x_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_X</span><span class="p">)</span><span class="o">-</span><span class="n">X1_tp1</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span><span class="n">X1_tp1</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">])</span>
     <span class="n">x_cov</span> <span class="o">=</span> <span class="n">mat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_X</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">kron_product</span><span class="p">,</span>
-                                <span class="n">vec</span><span class="p">(</span><span class="n">X1_tp1</span><span class="p">[</span><span class="s1">'w'</span><span class="p">]</span><span class="nd">@X1_tp1</span><span class="p">[</span><span class="s1">'w'</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">)),</span> <span class="p">(</span><span class="n">n_X</span><span class="p">,</span> <span class="n">n_X</span><span class="p">))</span>
+                                <span class="n">vec</span><span class="p">(</span><span class="n">X1_tp1</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">]</span><span class="nd">@X1_tp1</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">)),</span> <span class="p">(</span><span class="n">n_X</span><span class="p">,</span> <span class="n">n_X</span><span class="p">))</span>
     
     <span class="n">elasticities</span> <span class="o">=</span> <span class="n">_price_elasticity_loop</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">n_Y</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">Σ_tilde_expo_t</span><span class="p">,</span> <span class="n">Σ_tilde_value_t</span><span class="p">,</span> 
                            <span class="n">μ_expo_t0</span><span class="p">,</span> <span class="n">μ_value_t0</span><span class="p">,</span> <span class="n">μ_expo_t1</span><span class="p">,</span> <span class="n">μ_value_t1</span><span class="p">,</span>
@@ -884,7 +990,7 @@ L_{1,\infty} = \left(\frac {M_1}{M_0} \right)\left(\frac{\exp\left[\Phi_1^e X_{1
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@njit</span>
 <span class="k">def</span> <span class="nf">_compute_percentile</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">Ax_mean</span><span class="p">,</span> <span class="n">x_cov</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute percentile of the scalar Ax, where A is vector coefficient and x follows multivariate normal distribution.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
@@ -903,7 +1009,7 @@ L_{1,\infty} = \left(\frac {M_1}{M_0} \right)\left(\frac{\exp\left[\Phi_1^e X_{1
 <span class="sd">    res : float</span>
 <span class="sd">        Percentile of Ax.</span>
 
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">Ax_var</span> <span class="o">=</span> <span class="n">A</span><span class="nd">@x_cov@A</span><span class="o">.</span><span class="n">T</span>
     <span class="n">Ax_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Ax_var</span><span class="p">)</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">Ax_mean</span> <span class="o">+</span> <span class="n">Ax_std</span> <span class="o">*</span> <span class="n">p</span>
@@ -912,11 +1018,11 @@ L_{1,\infty} = \left(\frac {M_1}{M_0} \right)\left(\frac{\exp\left[\Phi_1^e X_{1
 </div>
 </div>
 </div>
-<p><br/><br/></p>
+<p><br><br></p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="an-illustration-using-the-long-run-risk-model-sup-1-sup">
-<h1 id="an-illustration-using-the-long-run-risk-model-sup-1-sup">3. An Illustration using the Long-Run Risk Model <sup>[1]</sup><a class="headerlink" href="#an-illustration-using-the-long-run-risk-model-sup-1-sup" title="Permalink to this heading">¶</a></h1>
+<h1>3. An Illustration using the Long-Run Risk Model <sup>[1]</sup><a class="headerlink" href="#an-illustration-using-the-long-run-risk-model-sup-1-sup" title="Permalink to this heading">#</a></h1>
 <p>This example uses the long-run risk model numerical results in the exponential-linear–quadratic framework to calculate shock elasticities. The variables are expressed in Python <em>LinQuadVar</em> objects, which store the coefficients in linear-quadratic structure. The <em>LinQuadVar</em> allows the add and multiply operations.  Using coefficients from [1], we form the approximation:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -933,7 +1039,7 @@ X_{t+1}^2 = &amp; \begin{bmatrix} 0.979 &amp; 0 \\ 0 &amp; 0.987 \end{bmatrix} X
 \begin{bmatrix} .5 &amp; 0 \end{bmatrix} X_{t}^2 + {X_{t}^1}' \begin{bmatrix} 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0.39 &amp; 0  \end{bmatrix}W_{t+1} \right)
 \end{split}\]</div>
 <section id="exposure-elasticity-for-consumption-growth">
-<h2 id="exposure-elasticity-for-consumption-growth">3.1 Exposure Elasticity for Consumption Growth<a class="headerlink" href="#exposure-elasticity-for-consumption-growth" title="Permalink to this heading">¶</a></h2>
+<h2>3.1 Exposure Elasticity for Consumption Growth<a class="headerlink" href="#exposure-elasticity-for-consumption-growth" title="Permalink to this heading">#</a></h2>
 <p>To calculate the exposure elasticity for consumption growth using the <em>exposure_elasticity</em> defined above, we need six inputs</p>
 <ul class="simple">
 <li><p>Consumption growth, <em>gc_tp1</em>, loaded from outside solutions. This is a <em>LinQuadVar</em> object.</p></li>
@@ -949,20 +1055,20 @@ X_{t+1}^2 = &amp; \begin{bmatrix} 0.979 &amp; 0 \\ 0 &amp; 0.987 \end{bmatrix} X
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">'</span><span class="si">{:.3g}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:.3g}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">font_scale</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">)</span>
 
-<span class="sd">"""</span>
+<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">load the long-run risk model solutions when ρ = 2/3, 1, 1.5, 10</span>
-<span class="sd">"""</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">workdir</span> <span class="o">+</span> <span class="s1">'/data/res_006.pkl'</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">workdir</span> <span class="o">+</span> <span class="s1">&#39;/data/res_006.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">res_006</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">workdir</span> <span class="o">+</span> <span class="s1">'/data/res_010.pkl'</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">workdir</span> <span class="o">+</span> <span class="s1">&#39;/data/res_010.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">res_010</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">workdir</span> <span class="o">+</span> <span class="s1">'/data/res_015.pkl'</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">workdir</span> <span class="o">+</span> <span class="s1">&#39;/data/res_015.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">res_015</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">workdir</span> <span class="o">+</span> <span class="s1">'/data/res_100.pkl'</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">workdir</span> <span class="o">+</span> <span class="s1">&#39;/data/res_100.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">res_100</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 
 <span class="c1"># Compute the shock elasticity for 30 years</span>
@@ -976,9 +1082,9 @@ X_{t+1}^2 = &amp; \begin{bmatrix} 0.979 &amp; 0 \\ 0 &amp; 0.987 \end{bmatrix} X
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the consumption and state evolution process </span>
-<span class="n">gc_tp1</span> <span class="o">=</span> <span class="n">res_015</span><span class="p">[</span><span class="s1">'gc_tp1'</span><span class="p">]</span>
-<span class="n">X1_tp1</span> <span class="o">=</span> <span class="n">res_015</span><span class="p">[</span><span class="s1">'X1_tp1'</span><span class="p">]</span>
-<span class="n">X2_tp1</span> <span class="o">=</span> <span class="n">res_015</span><span class="p">[</span><span class="s1">'X2_tp1'</span><span class="p">]</span>
+<span class="n">gc_tp1</span> <span class="o">=</span> <span class="n">res_015</span><span class="p">[</span><span class="s1">&#39;gc_tp1&#39;</span><span class="p">]</span>
+<span class="n">X1_tp1</span> <span class="o">=</span> <span class="n">res_015</span><span class="p">[</span><span class="s1">&#39;X1_tp1&#39;</span><span class="p">]</span>
+<span class="n">X2_tp1</span> <span class="o">=</span> <span class="n">res_015</span><span class="p">[</span><span class="s1">&#39;X2_tp1&#39;</span><span class="p">]</span>
 
 <span class="c1">## Calculate exposure elasticity for consumption growth</span>
 <span class="n">expo_elas_shock_0_015</span> <span class="o">=</span> <span class="p">[</span><span class="n">exposure_elasticity</span><span class="p">(</span><span class="n">gc_tp1</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">,</span> <span class="n">X2_tp1</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">shock</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">percentile</span><span class="o">=</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">quantile</span><span class="p">]</span> <span class="c1"># The first shock is the growth shock</span>
@@ -986,7 +1092,7 @@ X_{t+1}^2 = &amp; \begin{bmatrix} 0.979 &amp; 0 \\ 0 &amp; 0.987 \end{bmatrix} X
 <span class="n">expo_elas_shock_2_015</span> <span class="o">=</span> <span class="p">[</span><span class="n">exposure_elasticity</span><span class="p">(</span><span class="n">gc_tp1</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">,</span> <span class="n">X2_tp1</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">shock</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">percentile</span><span class="o">=</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">quantile</span><span class="p">]</span> <span class="c1"># The third shock is the consumption shock</span>
 
 <span class="c1">## Plot the exposure elasticity for consumption growth</span>
-<span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'T'</span><span class="p">,</span><span class="s1">'0.25 quantile'</span><span class="p">,</span><span class="s1">'0.5 quantile'</span><span class="p">,</span><span class="s1">'0.75 quantile'</span><span class="p">]</span>
+<span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">,</span><span class="s1">&#39;0.25 quantile&#39;</span><span class="p">,</span><span class="s1">&#39;0.5 quantile&#39;</span><span class="p">,</span><span class="s1">&#39;0.75 quantile&#39;</span><span class="p">]</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">25</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 <span class="n">expo_elas_shock_0</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">T</span><span class="p">),</span><span class="n">expo_elas_shock_0_015</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="n">expo_elas_shock_0_015</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="n">expo_elas_shock_0_015</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()],</span> <span class="n">index</span> <span class="o">=</span> <span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 <span class="n">expo_elas_shock_1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">T</span><span class="p">),</span><span class="n">expo_elas_shock_1_015</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="n">expo_elas_shock_1_015</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="n">expo_elas_shock_1_015</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()],</span> <span class="n">index</span> <span class="o">=</span> <span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
@@ -994,47 +1100,47 @@ X_{t+1}^2 = &amp; \begin{bmatrix} 0.979 &amp; 0 \\ 0 &amp; 0.987 \end{bmatrix} X
 
 <span class="n">n_qt</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">quantile</span><span class="p">)</span>
 <span class="n">plot_elas</span> <span class="o">=</span> <span class="p">[</span><span class="n">expo_elas_shock_0</span><span class="p">,</span> <span class="n">expo_elas_shock_2</span><span class="p">,</span> <span class="n">expo_elas_shock_1</span><span class="p">]</span> <span class="c1"># For illustration purpose, the consumption shock is plotted in the second column, the volatility shock is plotted in the third column</span>
-<span class="n">shock_name</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'growth shock'</span><span class="p">,</span> <span class="s1">'consumption shock'</span><span class="p">,</span> <span class="s1">'volatility shock'</span><span class="p">]</span>
-<span class="n">qt</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'0.25 quantile'</span><span class="p">,</span><span class="s1">'0.5 quantile'</span><span class="p">,</span><span class="s1">'0.75 quantile'</span><span class="p">]</span>
-<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'green'</span><span class="p">,</span><span class="s1">'red'</span><span class="p">,</span><span class="s1">'blue'</span><span class="p">]</span>
+<span class="n">shock_name</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;growth shock&#39;</span><span class="p">,</span> <span class="s1">&#39;consumption shock&#39;</span><span class="p">,</span> <span class="s1">&#39;volatility shock&#39;</span><span class="p">]</span>
+<span class="n">qt</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;0.25 quantile&#39;</span><span class="p">,</span><span class="s1">&#39;0.5 quantile&#39;</span><span class="p">,</span><span class="s1">&#39;0.75 quantile&#39;</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="s1">&#39;blue&#39;</span><span class="p">]</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">plot_elas</span><span class="p">)):</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_qt</span><span class="p">):</span>
-        <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">plot_elas</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>  <span class="n">x</span> <span class="o">=</span> <span class="s1">'T'</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">qt</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="n">qt</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>
-        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Exposure elasticity'</span><span class="p">)</span>
-        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'With respect to the '</span> <span class="o">+</span> <span class="n">shock_name</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">plot_elas</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>  <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">qt</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="n">qt</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Exposure elasticity&#39;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;With respect to the &#39;</span> <span class="o">+</span> <span class="n">shock_name</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.00185</span><span class="p">])</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.0185</span><span class="p">])</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.0185</span><span class="p">])</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">'Exposure elasticity for the consumption growth'</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Exposure elasticity for the consumption growth&#39;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/249087f33b5c848bf0dd3bb1d58d178351f76c0e5e5244111c66828297490cf7.png" src="../_images/249087f33b5c848bf0dd3bb1d58d178351f76c0e5e5244111c66828297490cf7.png"/>
+<img alt="../_images/249087f33b5c848bf0dd3bb1d58d178351f76c0e5e5244111c66828297490cf7.png" src="../_images/249087f33b5c848bf0dd3bb1d58d178351f76c0e5e5244111c66828297490cf7.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate exposure elasticity for consumption growth at the limit</span>
-<span class="n">log_f</span> <span class="o">=</span> <span class="n">LinQuadVar</span><span class="p">({</span><span class="s1">'c'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))},</span><span class="n">gc_tp1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">log_f</span> <span class="o">=</span> <span class="n">LinQuadVar</span><span class="p">({</span><span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))},</span><span class="n">gc_tp1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="n">Qf_components_log_C</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">η_C</span><span class="p">,</span> <span class="n">η_C_series</span> <span class="o">=</span> <span class="n">Q_mapping</span><span class="p">(</span><span class="n">gc_tp1</span><span class="p">,</span> <span class="n">log_f</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">,</span> <span class="n">X2_tp1</span><span class="p">,</span> <span class="n">tol</span> <span class="o">=</span> <span class="mf">1e-7</span><span class="p">)</span>
 <span class="n">expo_elas_shock_0_015_limit</span> <span class="o">=</span> <span class="p">[</span><span class="n">exposure_elasticity</span><span class="p">(</span><span class="n">gc_tp1</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">,</span> <span class="n">X2_tp1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">η_C_series</span><span class="p">),</span> <span class="n">shock</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">percentile</span><span class="o">=</span><span class="n">p</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">quantile</span><span class="p">]</span>
 <span class="n">expo_elas_shock_1_015_limit</span> <span class="o">=</span> <span class="p">[</span><span class="n">exposure_elasticity</span><span class="p">(</span><span class="n">gc_tp1</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">,</span> <span class="n">X2_tp1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">η_C_series</span><span class="p">),</span> <span class="n">shock</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">percentile</span><span class="o">=</span><span class="n">p</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">quantile</span><span class="p">]</span>
 <span class="n">expo_elas_shock_2_015_limit</span> <span class="o">=</span> <span class="p">[</span><span class="n">exposure_elasticity</span><span class="p">(</span><span class="n">gc_tp1</span><span class="p">,</span> <span class="n">X1_tp1</span><span class="p">,</span> <span class="n">X2_tp1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">η_C_series</span><span class="p">),</span> <span class="n">shock</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">percentile</span><span class="o">=</span><span class="n">p</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">quantile</span><span class="p">]</span>
 <span class="n">expo_limit</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">expo_elas_shock_0_015_limit</span><span class="p">,</span> <span class="n">expo_elas_shock_2_015_limit</span><span class="p">,</span><span class="n">expo_elas_shock_1_015_limit</span><span class="p">],</span>\
-            <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'0.25 quantile'</span><span class="p">,</span><span class="s1">'0.5 quantile'</span><span class="p">,</span><span class="s1">'0.75 quantile'</span><span class="p">],</span>\
-            <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Growth Shock'</span><span class="p">,</span><span class="s1">'Consumption Shock'</span><span class="p">,</span><span class="s1">'Volatility Shock'</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+            <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;0.25 quantile&#39;</span><span class="p">,</span><span class="s1">&#39;0.5 quantile&#39;</span><span class="p">,</span><span class="s1">&#39;0.75 quantile&#39;</span><span class="p">],</span>\
+            <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Growth Shock&#39;</span><span class="p">,</span><span class="s1">&#39;Consumption Shock&#39;</span><span class="p">,</span><span class="s1">&#39;Volatility Shock&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
 <span class="n">expo_limit</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
-<style scoped="">
+<style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -1048,41 +1154,41 @@ X_{t+1}^2 = &amp; \begin{bmatrix} 0.979 &amp; 0 \\ 0 &amp; 0.987 \end{bmatrix} X
     }
 </style>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>Growth Shock</th>
-<th>Consumption Shock</th>
-<th>Volatility Shock</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0.25 quantile</th>
-<td>0.015</td>
-<td>0.00718</td>
-<td>0.000458</td>
-</tr>
-<tr>
-<th>0.5 quantile</th>
-<td>0.0163</td>
-<td>0.0078</td>
-<td>0.000477</td>
-</tr>
-<tr>
-<th>0.75 quantile</th>
-<td>0.0176</td>
-<td>0.00842</td>
-<td>0.000496</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Growth Shock</th>
+      <th>Consumption Shock</th>
+      <th>Volatility Shock</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.25 quantile</th>
+      <td>0.015</td>
+      <td>0.00718</td>
+      <td>0.000458</td>
+    </tr>
+    <tr>
+      <th>0.5 quantile</th>
+      <td>0.0163</td>
+      <td>0.0078</td>
+      <td>0.000477</td>
+    </tr>
+    <tr>
+      <th>0.75 quantile</th>
+      <td>0.0176</td>
+      <td>0.00842</td>
+      <td>0.000496</td>
+    </tr>
+  </tbody>
 </table>
 </div></div></div>
 </div>
-<br/>
+<br>
 </section>
 <section id="calculate-price-elasticity-for-consumption-growth">
-<h2 id="calculate-price-elasticity-for-consumption-growth">3.2 Calculate Price Elasticity for Consumption Growth<a class="headerlink" href="#calculate-price-elasticity-for-consumption-growth" title="Permalink to this heading">¶</a></h2>
+<h2>3.2 Calculate Price Elasticity for Consumption Growth<a class="headerlink" href="#calculate-price-elasticity-for-consumption-growth" title="Permalink to this heading">#</a></h2>
 <p>Similarly, to calculate the price elasticity for consumption growth using the <em>price_elasticity</em> defined above, we need additional inputs</p>
 <ul class="simple">
 <li><p>Log Stochastic Discount Factor</p></li>
@@ -1102,7 +1208,7 @@ X_{t+1}^2 = &amp; \begin{bmatrix} 0.979 &amp; 0 \\ 0 &amp; 0.987 \end{bmatrix} X
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calc_SDF</span><span class="p">(</span><span class="n">res</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">'''</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    This function loads external results for the long-run risk model with different rho values, and then calculates the SDF.</span>
 
 <span class="sd">    Parameters</span>
@@ -1120,24 +1226,24 @@ X_{t+1}^2 = &amp; \begin{bmatrix} 0.979 &amp; 0 \\ 0 &amp; 0.987 \end{bmatrix} X
 <span class="sd">        Stores the coefficients of the first order expansion of the state evolution equations.</span>
 <span class="sd">    X2_tp1 : LinQuadVar</span>
 <span class="sd">        Stores the coefficients of the second order expansion of the state evolution equations.</span>
-<span class="sd">    '''</span>
-    <span class="n">n_J</span><span class="p">,</span> <span class="n">n_X</span><span class="p">,</span> <span class="n">n_W</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">'var_shape'</span><span class="p">]</span>
-    <span class="n">β</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">'β'</span><span class="p">]</span>
-    <span class="n">ρ</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">'ρ'</span><span class="p">]</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">n_J</span><span class="p">,</span> <span class="n">n_X</span><span class="p">,</span> <span class="n">n_W</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;var_shape&#39;</span><span class="p">]</span>
+    <span class="n">β</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;β&#39;</span><span class="p">]</span>
+    <span class="n">ρ</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;ρ&#39;</span><span class="p">]</span>
 
-    <span class="n">X1_tp1</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">'X1_tp1'</span><span class="p">]</span>
-    <span class="n">X2_tp1</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">'X2_tp1'</span><span class="p">]</span>
+    <span class="n">X1_tp1</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;X1_tp1&#39;</span><span class="p">]</span>
+    <span class="n">X2_tp1</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;X2_tp1&#39;</span><span class="p">]</span>
 
-    <span class="n">gc_tp1</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">'gc_tp1'</span><span class="p">]</span>
-    <span class="n">gc0_tp1</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">'gc0_tp1'</span><span class="p">]</span>
-    <span class="n">gc1_tp1</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">'gc1_tp1'</span><span class="p">]</span>
-    <span class="n">gc2_tp1</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">'gc2_tp1'</span><span class="p">]</span>
+    <span class="n">gc_tp1</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;gc_tp1&#39;</span><span class="p">]</span>
+    <span class="n">gc0_tp1</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;gc0_tp1&#39;</span><span class="p">]</span>
+    <span class="n">gc1_tp1</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;gc1_tp1&#39;</span><span class="p">]</span>
+    <span class="n">gc2_tp1</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;gc2_tp1&#39;</span><span class="p">]</span>
 
-    <span class="n">vmr1_tp1</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">'vmr1_tp1'</span><span class="p">]</span>
-    <span class="n">vmr2_tp1</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">'vmr2_tp1'</span><span class="p">]</span>
-    <span class="n">log_N_tilde</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">'log_N_tilde'</span><span class="p">]</span>
+    <span class="n">vmr1_tp1</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;vmr1_tp1&#39;</span><span class="p">]</span>
+    <span class="n">vmr2_tp1</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;vmr2_tp1&#39;</span><span class="p">]</span>
+    <span class="n">log_N_tilde</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;log_N_tilde&#39;</span><span class="p">]</span>
 
-    <span class="n">S0_tp1</span> <span class="o">=</span> <span class="n">LinQuadVar</span><span class="p">({</span><span class="s1">'c'</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">β</span><span class="p">)</span> <span class="o">-</span> <span class="n">ρ</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">gc0_tp1</span><span class="p">]])},</span> <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n_X</span><span class="p">,</span><span class="n">n_W</span><span class="p">))</span>
+    <span class="n">S0_tp1</span> <span class="o">=</span> <span class="n">LinQuadVar</span><span class="p">({</span><span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">β</span><span class="p">)</span> <span class="o">-</span> <span class="n">ρ</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">gc0_tp1</span><span class="p">]])},</span> <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n_X</span><span class="p">,</span><span class="n">n_W</span><span class="p">))</span>
     <span class="n">S1_tp1</span> <span class="o">=</span> <span class="p">(</span><span class="n">ρ</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">vmr1_tp1</span> <span class="o">-</span><span class="n">ρ</span><span class="o">*</span><span class="n">gc1_tp1</span>
     <span class="n">S2_tp1</span> <span class="o">=</span> <span class="p">(</span><span class="n">ρ</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">vmr2_tp1</span> <span class="o">-</span><span class="n">ρ</span><span class="o">*</span><span class="n">gc2_tp1</span>
 
@@ -1179,8 +1285,8 @@ X_{t+1}^2 = &amp; \begin{bmatrix} 0.979 &amp; 0 \\ 0 &amp; 0.987 \end{bmatrix} X
 
 <span class="c1">## Plot the price elasticity for consumption growth</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">25</span><span class="p">,</span><span class="mi">26</span><span class="p">))</span>
-<span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'T'</span><span class="p">,</span><span class="s1">'rho 006 0.25 quantile'</span><span class="p">,</span><span class="s1">'rho 006 0.5 quantile'</span><span class="p">,</span><span class="s1">'rho 006 0.75 quantile'</span><span class="p">,</span><span class="s1">'rho 010 0.25 quantile'</span><span class="p">,</span><span class="s1">'rho 010 0.5 quantile'</span><span class="p">,</span><span class="s1">'rho 010 0.75 quantile'</span><span class="p">,</span>\
-                              <span class="s1">'rho 015 0.25 quantile'</span><span class="p">,</span><span class="s1">'rho 015 0.5 quantile'</span><span class="p">,</span><span class="s1">'rho 015 0.75 quantile'</span><span class="p">,</span><span class="s1">'rho 100 0.25 quantile'</span><span class="p">,</span><span class="s1">'rho 100 0.5 quantile'</span><span class="p">,</span><span class="s1">'rho 100 0.75 quantile'</span><span class="p">]</span>
+<span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">,</span><span class="s1">&#39;rho 006 0.25 quantile&#39;</span><span class="p">,</span><span class="s1">&#39;rho 006 0.5 quantile&#39;</span><span class="p">,</span><span class="s1">&#39;rho 006 0.75 quantile&#39;</span><span class="p">,</span><span class="s1">&#39;rho 010 0.25 quantile&#39;</span><span class="p">,</span><span class="s1">&#39;rho 010 0.5 quantile&#39;</span><span class="p">,</span><span class="s1">&#39;rho 010 0.75 quantile&#39;</span><span class="p">,</span>\
+                              <span class="s1">&#39;rho 015 0.25 quantile&#39;</span><span class="p">,</span><span class="s1">&#39;rho 015 0.5 quantile&#39;</span><span class="p">,</span><span class="s1">&#39;rho 015 0.75 quantile&#39;</span><span class="p">,</span><span class="s1">&#39;rho 100 0.25 quantile&#39;</span><span class="p">,</span><span class="s1">&#39;rho 100 0.5 quantile&#39;</span><span class="p">,</span><span class="s1">&#39;rho 100 0.75 quantile&#39;</span><span class="p">]</span>
 <span class="n">price_elas_shock_0</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">T</span><span class="p">),</span><span class="n">price_elas_shock_0_006</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="n">price_elas_shock_0_006</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="n">price_elas_shock_0_006</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>\
                                                 <span class="n">price_elas_shock_0_010</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="n">price_elas_shock_0_010</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="n">price_elas_shock_0_010</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>\
                                                 <span class="n">price_elas_shock_0_015</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="n">price_elas_shock_0_015</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="n">price_elas_shock_0_015</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>\
@@ -1196,49 +1302,49 @@ X_{t+1}^2 = &amp; \begin{bmatrix} 0.979 &amp; 0 \\ 0 &amp; 0.987 \end{bmatrix} X
 <span class="n">n_rho</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="n">n_qt</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">quantile</span><span class="p">)</span>
 <span class="n">plot_elas</span> <span class="o">=</span> <span class="p">[</span><span class="n">price_elas_shock_0</span><span class="p">,</span><span class="n">price_elas_shock_2</span><span class="p">,</span><span class="n">price_elas_shock_1</span><span class="p">]</span>
-<span class="n">shock_name</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'growth shock'</span><span class="p">,</span> <span class="s1">'consumption shock'</span><span class="p">,</span> <span class="s1">'volatility shock'</span><span class="p">]</span>
-<span class="n">rho_y</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'rho 006'</span><span class="p">,</span> <span class="s1">'rho 010'</span><span class="p">,</span> <span class="s1">'rho 015'</span><span class="p">,</span> <span class="s1">'rho 100'</span><span class="p">]</span>
-<span class="n">rho_label</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'rho = 2/3'</span><span class="p">,</span><span class="s1">'rho = 1'</span><span class="p">,</span><span class="s1">'rho = 1.5'</span><span class="p">,</span><span class="s1">'rho = 10'</span><span class="p">]</span>
-<span class="n">qt</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'0.25 quantile'</span><span class="p">,</span><span class="s1">'0.5 quantile'</span><span class="p">,</span><span class="s1">'0.75 quantile'</span><span class="p">]</span>
-<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'green'</span><span class="p">,</span><span class="s1">'red'</span><span class="p">,</span><span class="s1">'blue'</span><span class="p">]</span>
+<span class="n">shock_name</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;growth shock&#39;</span><span class="p">,</span> <span class="s1">&#39;consumption shock&#39;</span><span class="p">,</span> <span class="s1">&#39;volatility shock&#39;</span><span class="p">]</span>
+<span class="n">rho_y</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;rho 006&#39;</span><span class="p">,</span> <span class="s1">&#39;rho 010&#39;</span><span class="p">,</span> <span class="s1">&#39;rho 015&#39;</span><span class="p">,</span> <span class="s1">&#39;rho 100&#39;</span><span class="p">]</span>
+<span class="n">rho_label</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;rho = 2/3&#39;</span><span class="p">,</span><span class="s1">&#39;rho = 1&#39;</span><span class="p">,</span><span class="s1">&#39;rho = 1.5&#39;</span><span class="p">,</span><span class="s1">&#39;rho = 10&#39;</span><span class="p">]</span>
+<span class="n">qt</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;0.25 quantile&#39;</span><span class="p">,</span><span class="s1">&#39;0.5 quantile&#39;</span><span class="p">,</span><span class="s1">&#39;0.75 quantile&#39;</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="s1">&#39;blue&#39;</span><span class="p">]</span>
 
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">plot_elas</span><span class="p">)):</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_rho</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_qt</span><span class="p">):</span>
-            <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">plot_elas</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>  <span class="n">x</span> <span class="o">=</span> <span class="s1">'T'</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">rho_y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span><span class="s1">' '</span> <span class="o">+</span> <span class="n">qt</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="n">qt</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="s1">', '</span><span class="o">+</span><span class="n">rho_label</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-            <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>
-            <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Price elasticity'</span><span class="p">)</span>
+            <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">plot_elas</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>  <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">rho_y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span><span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">qt</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="n">qt</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;, &#39;</span><span class="o">+</span><span class="n">rho_label</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price elasticity&#39;</span><span class="p">)</span>
             <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.185</span><span class="p">])</span>
-            <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'With respect to the '</span><span class="o">+</span> <span class="n">shock_name</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+            <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;With respect to the &#39;</span><span class="o">+</span> <span class="n">shock_name</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
 
-<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">'Price elasticity for the consumption growth'</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Price elasticity for the consumption growth&#39;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3edc8a087eb992f97253aafa2504c31faaec6ec28230078e4352f852a0b0adc7.png" src="../_images/3edc8a087eb992f97253aafa2504c31faaec6ec28230078e4352f852a0b0adc7.png"/>
+<img alt="../_images/3edc8a087eb992f97253aafa2504c31faaec6ec28230078e4352f852a0b0adc7.png" src="../_images/3edc8a087eb992f97253aafa2504c31faaec6ec28230078e4352f852a0b0adc7.png" />
 </div>
 </div>
 </section>
 <section id="shock-elasticities-under-different-parameter-settings">
-<h2 id="shock-elasticities-under-different-parameter-settings">3.3 Shock Elasticities under Different Parameter Settings<a class="headerlink" href="#shock-elasticities-under-different-parameter-settings" title="Permalink to this heading">¶</a></h2>
+<h2>3.3 Shock Elasticities under Different Parameter Settings<a class="headerlink" href="#shock-elasticities-under-different-parameter-settings" title="Permalink to this heading">#</a></h2>
 <p>Below is a brief UI to select parameters shown in the long-run risk model [1]. The stochastic volatility process has been normalized with its mean equal to 1. By changing the inputs of parameters, we can see how shock elasticities vary with respect to these parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>
 <span class="kn">from</span> <span class="nn">BY_example_sol</span> <span class="kn">import</span> <span class="n">solve_BY_elas</span>
 
-<span class="n">interact</span><span class="p">(</span><span class="n">solve_BY_elas</span><span class="p">,</span> <span class="n">γ</span><span class="o">=</span><span class="p">[(</span><span class="s1">'5'</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="s1">'10'</span><span class="p">,</span><span class="mi">10</span><span class="p">),(</span><span class="s1">'15'</span><span class="p">,</span><span class="mi">15</span><span class="p">),(</span><span class="s1">'20'</span><span class="p">,</span><span class="mi">20</span><span class="p">)],</span>\
-                        <span class="n">β</span><span class="o">=</span><span class="p">[(</span><span class="s1">'0.995'</span><span class="p">,</span><span class="mf">0.995</span><span class="p">),(</span><span class="s1">'0.998'</span><span class="p">,</span><span class="mf">0.998</span><span class="p">),</span> <span class="p">(</span><span class="s1">'0.999'</span><span class="p">,</span><span class="mf">0.999</span><span class="p">)],</span>\
-                        <span class="n">ρ</span><span class="o">=</span><span class="p">[(</span><span class="s1">'2/3'</span><span class="p">,</span> <span class="mf">2.</span><span class="o">/</span><span class="mi">3</span><span class="p">),(</span><span class="s1">'1'</span><span class="p">,</span> <span class="mf">1.0001</span><span class="p">),(</span><span class="s1">'1.5'</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),(</span><span class="s1">'10'</span><span class="p">,</span> <span class="mi">10</span><span class="p">)],</span>\
-                        <span class="n">α</span><span class="o">=</span><span class="p">[(</span><span class="s1">'0.969'</span><span class="p">,</span><span class="mf">0.969</span><span class="p">),(</span><span class="s1">'0.979'</span><span class="p">,</span><span class="mf">0.979</span><span class="p">),(</span><span class="s1">'0.989'</span><span class="p">,</span><span class="mf">0.989</span><span class="p">)],</span>\
-                        <span class="n">ϕ_e</span><span class="o">=</span><span class="p">[(</span><span class="s1">'0.0002'</span><span class="p">,</span><span class="mf">0.0002</span><span class="p">),(</span><span class="s1">'0.0003432'</span><span class="p">,</span><span class="mf">0.0003432</span><span class="p">),(</span><span class="s1">'0.0004'</span><span class="p">,</span><span class="mf">0.0004</span><span class="p">)],</span>\
-                        <span class="n">ν_1</span><span class="o">=</span><span class="p">[(</span><span class="s1">'0.977'</span><span class="p">,</span><span class="mf">0.977</span><span class="p">),(</span><span class="s1">'0.987'</span><span class="p">,</span><span class="mf">0.987</span><span class="p">),(</span><span class="s1">'0.997'</span><span class="p">,</span><span class="mf">0.997</span><span class="p">)],</span>\
-                        <span class="n">σ_w</span><span class="o">=</span><span class="p">[(</span><span class="s1">'0.03'</span><span class="p">,</span><span class="mf">0.03</span><span class="p">),(</span><span class="s1">'0.0378'</span><span class="p">,</span><span class="mf">0.0378</span><span class="p">),(</span><span class="s1">'0.04'</span><span class="p">,</span><span class="mf">0.04</span><span class="p">)],</span>\
-                        <span class="n">μ</span><span class="o">=</span><span class="p">[(</span><span class="s1">'0.0005'</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">),(</span><span class="s1">'0.0015'</span><span class="p">,</span> <span class="mf">0.0015</span><span class="p">),(</span><span class="s1">'0.003'</span><span class="p">,</span><span class="mf">0.003</span><span class="p">)],</span>\
-                        <span class="n">ϕ_c</span><span class="o">=</span><span class="p">[(</span><span class="s1">'0.002'</span><span class="p">,</span><span class="mf">0.002</span><span class="p">),(</span><span class="s1">'0.0078'</span><span class="p">,</span><span class="mf">0.0078</span><span class="p">),(</span><span class="s1">'0.01'</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)]);</span>
+<span class="n">interact</span><span class="p">(</span><span class="n">solve_BY_elas</span><span class="p">,</span> <span class="n">γ</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;5&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">,</span><span class="mi">10</span><span class="p">),(</span><span class="s1">&#39;15&#39;</span><span class="p">,</span><span class="mi">15</span><span class="p">),(</span><span class="s1">&#39;20&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">)],</span>\
+                        <span class="n">β</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;0.995&#39;</span><span class="p">,</span><span class="mf">0.995</span><span class="p">),(</span><span class="s1">&#39;0.998&#39;</span><span class="p">,</span><span class="mf">0.998</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;0.999&#39;</span><span class="p">,</span><span class="mf">0.999</span><span class="p">)],</span>\
+                        <span class="n">ρ</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;2/3&#39;</span><span class="p">,</span> <span class="mf">2.</span><span class="o">/</span><span class="mi">3</span><span class="p">),(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="mf">1.0001</span><span class="p">),(</span><span class="s1">&#39;1.5&#39;</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),(</span><span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)],</span>\
+                        <span class="n">α</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;0.969&#39;</span><span class="p">,</span><span class="mf">0.969</span><span class="p">),(</span><span class="s1">&#39;0.979&#39;</span><span class="p">,</span><span class="mf">0.979</span><span class="p">),(</span><span class="s1">&#39;0.989&#39;</span><span class="p">,</span><span class="mf">0.989</span><span class="p">)],</span>\
+                        <span class="n">ϕ_e</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;0.0002&#39;</span><span class="p">,</span><span class="mf">0.0002</span><span class="p">),(</span><span class="s1">&#39;0.0003432&#39;</span><span class="p">,</span><span class="mf">0.0003432</span><span class="p">),(</span><span class="s1">&#39;0.0004&#39;</span><span class="p">,</span><span class="mf">0.0004</span><span class="p">)],</span>\
+                        <span class="n">ν_1</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;0.977&#39;</span><span class="p">,</span><span class="mf">0.977</span><span class="p">),(</span><span class="s1">&#39;0.987&#39;</span><span class="p">,</span><span class="mf">0.987</span><span class="p">),(</span><span class="s1">&#39;0.997&#39;</span><span class="p">,</span><span class="mf">0.997</span><span class="p">)],</span>\
+                        <span class="n">σ_w</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;0.03&#39;</span><span class="p">,</span><span class="mf">0.03</span><span class="p">),(</span><span class="s1">&#39;0.0378&#39;</span><span class="p">,</span><span class="mf">0.0378</span><span class="p">),(</span><span class="s1">&#39;0.04&#39;</span><span class="p">,</span><span class="mf">0.04</span><span class="p">)],</span>\
+                        <span class="n">μ</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;0.0005&#39;</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">),(</span><span class="s1">&#39;0.0015&#39;</span><span class="p">,</span> <span class="mf">0.0015</span><span class="p">),(</span><span class="s1">&#39;0.003&#39;</span><span class="p">,</span><span class="mf">0.003</span><span class="p">)],</span>\
+                        <span class="n">ϕ_c</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;0.002&#39;</span><span class="p">,</span><span class="mf">0.002</span><span class="p">),(</span><span class="s1">&#39;0.0078&#39;</span><span class="p">,</span><span class="mf">0.0078</span><span class="p">),(</span><span class="s1">&#39;0.01&#39;</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)]);</span>
 </pre></div>
 </div>
 </div>
@@ -1257,20 +1363,21 @@ Current paramter settings
 ϕ_c = 0.0078
 </pre></div>
 </div>
-<img alt="../_images/ec8fa66fcd33991c76202446039e5d5d09f885380186287e8f830865c301d316.png" src="../_images/ec8fa66fcd33991c76202446039e5d5d09f885380186287e8f830865c301d316.png"/>
+<img alt="../_images/ec8fa66fcd33991c76202446039e5d5d09f885380186287e8f830865c301d316.png" src="../_images/ec8fa66fcd33991c76202446039e5d5d09f885380186287e8f830865c301d316.png" />
 </div>
 </div>
-<p><br/><br/></p>
+<p><br><br></p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="reference">
-<h1 id="reference">Reference<a class="headerlink" href="#reference" title="Permalink to this heading">¶</a></h1>
+<h1>Reference<a class="headerlink" href="#reference" title="Permalink to this heading">#</a></h1>
 <p>[1], Bansal, Ravi, and Amir Yaron. “Risks for the long run: A potential resolution of asset pricing puzzles.” The journal of Finance 59, no. 4 (2004): 1481-1509.</p>
 <p>[2], Borovička, Jaroslav, and Lars Peter Hansen. “Term structure of uncertainty in the macroeconomy.” In Handbook of Macroeconomics, vol. 2, pp. 1641-1696. Elsevier, 2016.</p>
 <p>[3], Borovička, Jaroslav, and Lars Peter Hansen. “Examining macroeconomic models through the lens of asset pricing.” Journal of Econometrics 183, no. 1 (2014): 67-90.</p>
 <p>[4], Lombardo, Giovanni, and Harald Uhlig. “A theory of pruning.” International Economic Review 59, no. 4 (2018): 1825-1836.</p>
 </section>
-<script type="text/x-thebe-config">
+
+    <script type="text/x-thebe-config">
     {
         requestKernel: true,
         binderOptions: {
@@ -1288,63 +1395,122 @@ Current paramter settings
         predefinedOutput: true
     }
     </script>
-<script>kernelName = 'python3'</script>
+    <script>kernelName = 'python3'</script>
 
-          </article>
-        </div>
-      </div>
-    </main>
-  </div>
-  <footer class="md-footer">
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-          
-            <a href="uncertainexpansion.html" title="Uncertain Expansion Methods"
-               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
-               rel="prev">
-              <div class="md-flex__cell md-flex__cell--shrink">
-                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-              </div>
-              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-                <span class="md-flex__ellipsis">
-                  <span
-                      class="md-footer-nav__direction"> Previous </span> Uncertain Expansion Methods </span>
-              </div>
-            </a>
-          
-          
-            <a href="../continuous_global_solution/Twocap.html" title="Sluggish Two Capital Model"
-               class="md-flex md-footer-nav__link md-footer-nav__link--next"
-               rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
-                class="md-flex__ellipsis"> <span
-                class="md-footer-nav__direction"> Next </span> Sluggish Two Capital Model </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink"><i
-                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          
-        </a>
-        
-      </nav>
-    </div>
-    <div class="md-footer-meta md-typeset">
-      <div class="md-footer-meta__inner md-grid">
-        <div class="md-footer-copyright">
-          <div class="md-footer-copyright__highlight">
-              &#169; Copyright 2022.
+                </article>
               
-          </div>
-            Created using
-            <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
-             and
-            <a href="https://github.com/bashtage/sphinx-material/">Material for
-              Sphinx</a>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="uncertainexpansion.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Uncertain Expansion Methods</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="../continuous_global_solution/Twocap.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Sluggish Two Capital Model</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Shock Elasticity Computation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exponential-linear-quadratic-framework">1. Exponential-linear-quadratic Framework</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#shock-elasticity">2. Shock Elasticity</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-framework">2.1 Analytical framework</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limiting-behavior">2.2 Limiting Behavior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-and-price-elasticities">2.3 Exposure and Price Elasticities</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#an-illustration-using-the-long-run-risk-model-sup-1-sup">3. An Illustration using the Long-Run Risk Model <sup>[1]</sup></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-elasticity-for-consumption-growth">3.1 Exposure Elasticity for Consumption Growth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-price-elasticity-for-consumption-growth">3.2 Calculate Price Elasticity for Consumption Growth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shock-elasticities-under-different-parameter-settings">3.3 Shock Elasticities under Different Parameter Settings</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Lars Peter Hansen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
   </footer>
-  <script src="../_static/javascripts/application.js"></script>
-  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
   </body>
 </html>
